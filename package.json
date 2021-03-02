@@ -7,8 +7,8 @@
     "build": "webpack --config webpack.config.js",
     "dev": "webpack --config webpack.config.js --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "https://danramz.dev",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.13.8",
