@@ -1,0 +1,15 @@
+/*
+Theme Name: Danramzdev WP
+Theme URI: https://danramz.dev
+Author: danramzdev
+Author URI: https://danramz.dev
+Description: The Wordpress theme configuration for modern development
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: wordpress, webpack, babel, es6, ecmascript 2015
+Text Domain: danramzdevwp
+*/
+
+/* Make all changes in src/sass and run "npm run dev" or "npm run build" */
+@import './assets/css/style.css';
