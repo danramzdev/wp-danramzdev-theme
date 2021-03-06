@@ -5,7 +5,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    path: path.resolve(__dirname, 'assets/js'),
+    path: path.resolve(__dirname, 'dist/js'),
     filename: 'main.js',
   },
   module: {
@@ -21,8 +21,21 @@ module.exports = {
         },
       },
       {
+        test: /\.(png|jpe?g|svg|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              publicPath: 'dist/img',
+              outputPath: '../img',
+            },
+          },
+        ],
+      },
+      {
         // Apply rule for .sass, .scss or .css files
         test: /\.(sa|sc|c)ss$/,
+        exclude: [/node_modules/],
 
         // Set loaders to transform files.
         // Loaders are applying from right to left(!)
@@ -33,9 +46,6 @@ module.exports = {
             // It gets all transformed CSS and extracts it into separate
             // single bundled file
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-            },
           },
           {
             // This loader resolves url() and @imports inside CSS
@@ -58,7 +68,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../css/style.css',
+      filename: '../../style.css',
     }),
     new BrowserSyncPlugin(
       {
@@ -66,7 +76,7 @@ module.exports = {
         port: 3000,
         proxy: 'localhost/[yoursiteurl]',
         open: 'external',
-        files: ['./**/*.php'],
+        files: ['./**/*.php', './**/*.scss', './**/*.js'],
       },
       {
         // prevent BrowserSync from reloading the page
