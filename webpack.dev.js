@@ -1,10 +1,11 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, 'dist/js'),
     filename: 'main.js',
     publicPath: '/'
   },
@@ -60,6 +61,20 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '../../style.css',
     }),
+    new BrowserSyncPlugin(
+      {
+        host: 'localhost',
+        port: 3000,
+        proxy: 'localhost/project',
+        open: 'external',
+        files: ['./**/*.php', './**/*.scss', './**/*.sass', './**/*.css', './**/*.js'],
+      },
+      {
+        // prevent BrowserSync from reloading the page
+        // and let Webpack Dev Server take care of this
+        reload: false,
+      }
+    ),
   ],
-  mode: 'production',
+  mode: 'development',
 };
